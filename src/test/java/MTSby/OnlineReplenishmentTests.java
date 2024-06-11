@@ -6,10 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleContains;
 
-
-public class TestMTS {
+public class OnlineReplenishmentTests {
     private static WebDriver driver;
 
     @BeforeAll
