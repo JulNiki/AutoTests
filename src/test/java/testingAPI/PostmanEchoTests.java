@@ -122,7 +122,4 @@ public class PostmanEchoTests {
                 .body("data", equalTo(requestBody))
                 .body("url", equalTo("https://postman-echo.com/delete"));
     }
-
-
-
 }
