@@ -79,7 +79,7 @@ public class OnlineReplenishmentTests {
         WebElement masterCardSecureCodeLogo = null;
         try {
             masterCardSecureCodeLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"MasterCard Secure Code\"]"));
-        } catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
             fail("id_2.4. Ошибка: элемент с логотипом MasterCard Secure Code не был найден.");
         }
         assertTrue(masterCardSecureCodeLogo.isDisplayed(), "id_2.4. Ошибка: логотип платежной системы MasterCard Secure Code не отображается");
