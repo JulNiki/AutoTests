@@ -3,7 +3,6 @@ package MTSbyLes16;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,11 +22,8 @@ public class OnlinePaymentTests {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("http://mts.by");
-        try {
-            WebElement cookieAgreeButton = driver.findElement(By.id("cookie-agree"));
-            cookieAgreeButton.click();
-        } catch (NoSuchElementException e){
-        }
+        WebElement cookieAgreeButton = driver.findElement(By.id("cookie-agree"));
+        cookieAgreeButton.click();
     }
 
     @Test
@@ -370,9 +366,7 @@ public class OnlinePaymentTests {
 
     @AfterAll
     public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
 }
