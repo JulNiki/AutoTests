@@ -1,30 +1,24 @@
 package MTSby;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-
-public class OnlineReplenishmentTests {
-    private static WebDriver driver;
+ class OnlineReplenishmentTests {
+    static WebDriver driver;
 
     @BeforeAll
     public static void start() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("http://mts.by");
-        try {
-            WebElement cookieAgreeButton = driver.findElement(By.id("cookie-agree"));
-            cookieAgreeButton.click();
-        } catch (NoSuchElementException e){
-        }
+        WebElement cookieAgreeButton = driver.findElement(By.id("cookie-agree"));
+        cookieAgreeButton.click();
     }
 
     @Test
@@ -38,79 +32,47 @@ public class OnlineReplenishmentTests {
 
     @Test
     @DisplayName("id_2.1. Проверка наличия логотипа платежной системы: Visa")
-    public void testAvailabilityLogoPaymentSystemVisa(){
-        WebElement visaLogo = null;
-        try {
-            visaLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Visa\"]"));
-        } catch (NoSuchElementException e) {
-            fail("id_2.1. Ошибка: элемент с логотипом Visa не был найден.");
-        }
+    public void testAvailabilityLogoPaymentSystemVisa() {
+        WebElement visaLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Visa\"]"));
         assertTrue(visaLogo.isDisplayed(), "id_2.1. Ошибка: логотип платежной системы Visa не отображается");
     }
 
     @Test
     @DisplayName("id_2.2. Проверка наличия логотипа платежной системы: Verified By Visa")
     public void testAvailabilityLogoPaymentSystemVerifiedByVisa(){
-        WebElement verifiedByVisaLogo = null;
-        try {
-            verifiedByVisaLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Verified By Visa\"]"));
-        } catch (NoSuchElementException e) {
-            fail("id_2.2. Ошибка: элемент с логотипом Verified By Visa не был найден.");
-        }
+        WebElement verifiedByVisaLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Verified By Visa\"]"));
         assertTrue(verifiedByVisaLogo.isDisplayed(), "id_2.2. Ошибка: логотип платежной системы Verified By Visa не отображается");
     }
 
     @Test
     @DisplayName("id_2.3. Проверка наличия логотипа платежной системы: MasterCard")
     public void  testAvailabilityLogoPaymentSystemMasterCard(){
-        WebElement masterCardLogo = null;
-        try {
-            masterCardLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"MasterCard\"]"));
-        } catch (NoSuchElementException e) {
-            fail("id_2.3. Ошибка: элемент с логотипом MasterCard не был найден.");
-        }
+        WebElement masterCardLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"MasterCard\"]"));
         assertTrue(masterCardLogo.isDisplayed(), "id_2.3. Ошибка: логотип платежной системы MasterCard не отображается");
     }
-
 
     @Test
     @DisplayName("id_2.4. Проверка наличия логотипа платежной системы: MasterCard Secure Code")
     public void testAvailabilityLogoPaymentSystemMasterCardSecureCode() {
-        WebElement masterCardSecureCodeLogo = null;
-        try {
-            masterCardSecureCodeLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"MasterCard Secure Code\"]"));
-            } catch (NoSuchElementException e) {
-            fail("id_2.4. Ошибка: элемент с логотипом MasterCard Secure Code не был найден.");
-        }
+        WebElement masterCardSecureCodeLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"MasterCard Secure Code\"]"));
         assertTrue(masterCardSecureCodeLogo.isDisplayed(), "id_2.4. Ошибка: логотип платежной системы MasterCard Secure Code не отображается");
     }
 
     @Test
     @DisplayName("id_2.5. Проверка наличия логотипа платежной системы: Белкарт")
     public void testAvailabilityLogoPaymentSystemBelkart(){
-        WebElement belkartLogo = null;
-        try {
-            belkartLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Белкарт\"]"));
-        }catch (NoSuchElementException e){
-            fail("id_2.5. Ошибка: элемент с логотипом Белкарт не был найден.");
-        }
+        WebElement belkartLogo = driver.findElement(By.xpath("//div[@class='pay__partners']//*[@alt=\"Белкарт\"]"));
         assertTrue(belkartLogo.isDisplayed(), "id_2.5. Ошибка: логотип платежной системы Белкарт не отображается");
     }
-
 
     @Test
     @DisplayName("id_3. Проверка работы ссылки «Подробнее о сервисе»")
     public void testMoreAboutServiceLink(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement linkMoreAboutService;
-        try {
-            linkMoreAboutService = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Подробнее о сервисе")));
-            linkMoreAboutService.click();
-            boolean urlIsCorrect = wait.until(ExpectedConditions.urlContains("help/poryadok-oplaty-i-bezopasnost-internet-platezhey/"));
-            assertTrue(urlIsCorrect, "id_3. Ошибка: URL страницы не соответствует ожидаемому.");
-        } catch (Exception e) {
-            fail("id_3. Ошибка: " + e.getMessage());
-        }
+        WebElement linkMoreAboutService = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Подробнее о сервисе")));
+        linkMoreAboutService.click();
+        boolean urlIsCorrect = wait.until(ExpectedConditions.urlContains("help/poryadok-oplaty-i-bezopasnost-internet-platezhey/"));
+        assertTrue(urlIsCorrect, "id_3. Ошибка: URL страницы не соответствует ожидаемому.");
     }
 
     @Test
@@ -135,9 +97,8 @@ public class OnlineReplenishmentTests {
 
     @AfterAll
     public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
+
 
 }
